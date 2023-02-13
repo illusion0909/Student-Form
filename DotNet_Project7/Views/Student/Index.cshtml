@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DotNet_Project7.Models.Student>
+
+@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+
+<h2 class="text-danger text-center">Student List</h2>
+
+@Html.ActionLink("Add New Student", "Create", "Student", new { @class = "btn btn-success" })
+<br />
+<br />
+
+@if (!Model.Any())
+{
+    <br />
+    <br />
+    <h3 class="text-danger">No Record Found</h3>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover p-2 m-2">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var std in Model)
+            {
+                using (Html.BeginForm("Delete", "Student", new { id = std.Id }))
+                {
+                    <tr>
+                        <td>@std.Name</td>
+                        <td>@std.Address</td>
+                        <td>@std.Email</td>
+                        <td>@std.Age</td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = std.Id })  |
+                            @Html.ActionLink("Details", "Details", new { id = std.Id }) |
+                            @*@Html.ActionLink("Delete", "Delete", new { id = std.Id })*@
+                            <input type="submit" value="Delete" class="btn btn-link" onclick="return confirm('Want To Delete Data?')" />
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+}

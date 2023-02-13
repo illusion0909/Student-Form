@@ -1,0 +1,32 @@
+﻿@model DotNet_Project7.Models.Student
+@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+@*@{
+        var email=Model.Email==null? No Email Found: Model.Email;
+}*@
+
+<h2 class="text-danger text-center">Student Details</h2>
+<table class=" table table-bordered table-condensed table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.Address</td>
+            <td>@Model.Email</td>
+            <td>@Model.Age</td>
+
+        </tr>
+    </tbody>
+</table>
+@Html.ActionLink("Back To List", "Index")
+@Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+
